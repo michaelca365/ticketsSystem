@@ -14,11 +14,18 @@ export const usersSchema: ModelAttributes = {
     type: DataTypes.UUID,
     allowNull: false,
     primaryKey: true,
-    defaultValue: UUIDV4
+    defaultValue: UUIDV4,
+    unique: true
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true
+  },
+  estado: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
   },
   password: {
     allowNull: false,

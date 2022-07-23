@@ -9,10 +9,17 @@ const usersSchema = {
     type: DataTypes.UUID,
     allowNull: false,
     primaryKey: true,
+    unique: true
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true
+  },
+  estado: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
   },
   password: {
     allowNull: false,

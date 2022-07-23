@@ -1,9 +1,11 @@
 import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import auth from "../routes/route.auth";
 import users from "../routes/route.users";
 import { sequelize } from "../database/config";
 import { setupModels } from "../database/model";
-import cors from "cors";
+
 import {
   boomErrorHandler,
   errorHandler,
@@ -30,6 +32,7 @@ export class Server {
 
   middlewares(): void {
     this.app.use(cors({ origin: true, credentials: true }));
+    this.app.use(cookieParser());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
