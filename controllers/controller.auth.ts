@@ -13,7 +13,6 @@ export const userLogin = async(req: Request, res: Response, next: NextFunction) 
     const { email, password } = req.body;
     const user = (await service.findUser({email, estado: true}, "Usuario / Password no son correctos ERROR 1")).get({plain: true}) as userTypesDB;
     const validarPassword = bcrypt.compareSync(password, user.password);
-    console.log(validarPassword, user, "ERROR 2")
     if (!validarPassword) {
       throw boom.badRequest("Usuario / Password no son correctos");
     }
