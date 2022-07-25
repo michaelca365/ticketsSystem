@@ -7,10 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon index.ts",
     "migrations:generate": "sequelize-cli migration:generate --name",
+    "seed:generate": "sequelize-cli seed:generate --name",
     "migrations:run": "sequelize-cli db:migrate",
     "migrations:revert": "sequelize-cli db:migrate:undo",
     "migrations:delete": "sequelize-cli db:migrate:undo:all",
-    "heroku-postbuild": "sequelize-cli db:migrate"
+    "heroku-postbuild": "sequelize-cli db:migrate && sequelize-cli db:seed:all" 
   },
   "keywords": [],
   "author": "",
