@@ -5,7 +5,9 @@ const options: Options = {
   logging: process.env.NODE_ENV === "development" ? (str) => console.log(str) : false,
   ssl: process.env.NODE_ENV === "development" ? false : true,
   dialectOptions: {
-    ssl: true
+    ssl: true,
+    require: true,
+    rejectUnauthorized: false
   }
 };
 
