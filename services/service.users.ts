@@ -8,6 +8,7 @@ export class UsersService {
   async findUser(whereOption: WhereOptions, notFoundMessage: string): Promise<Model> {
     try {
       const findUser = await sequelize.models.users.findOne({ where: whereOption });
+      console.log(findUser)
       if (!findUser) {
         throw boom.badRequest(notFoundMessage);
       }
