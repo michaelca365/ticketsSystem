@@ -38,7 +38,8 @@ export const usersSchema: ModelAttributes = {
   user_permission: {
     allowNull: false,
     type: DataTypes.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
+    comment: "1 administrador, 2 recepcion, 3 tecnico"
   }
 };
 

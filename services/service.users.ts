@@ -17,10 +17,33 @@ export class UsersService {
     }
   }
 
+  async findAllUsers(whereOption: WhereOptions | undefined): Promise<Model[]> {
+    try {
+      const findUser = await sequelize.models.users.findAll({attributes: ["id", "email", "user_name"],  where: whereOption });
+      return findUser;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async createUser(userData: userTypes): Promise<Model> {
     try {
+      const checkIfUserExist = await sequelize.models.users.findOne({where: {email: userData.email}});
+      if(checkIfUserExist){
+        throw boom.badRequest("No se puede registrar al usuario con el correo proporcionado")
+      }
       const userCreated = await sequelize.models.users.create(userData);
       return userCreated;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async disableUser(id: string): Promise<Model>{
+    try {
+      const user = await this.findUser({id}, "No existe el usuario");
+      await user.update({estado: false});
+      return user;
     } catch (error) {
       throw error;
     }

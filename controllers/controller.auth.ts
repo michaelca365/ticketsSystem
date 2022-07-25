@@ -11,7 +11,7 @@ const service = new UsersService();
 export const userLogin = async(req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, password } = req.body;
-    const user = (await service.findUser({email}, "Usuario / Password no son correctos")).get({plain: true}) as userTypesDB;
+    const user = (await service.findUser({email, estado: true}, "Usuario / Password no son correctos")).get({plain: true}) as userTypesDB;
 
     const validarPassword = bcrypt.compareSync(password, user.password);
     if (!validarPassword) {

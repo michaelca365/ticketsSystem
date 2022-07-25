@@ -10,4 +10,8 @@ export const createUser = Joi.object({
     userName: userName.required(),
     password: password.required(),
     userPermission: userPermission.required()
+});
+
+export const disableUserSchema = Joi.object({
+    userId: Joi.string().guid({version: 'uuidv4'}),
 })

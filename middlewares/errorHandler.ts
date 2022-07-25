@@ -26,6 +26,7 @@ class HttpException extends Error {
   }
 }
 
+
 export const logErrors = (
   error: HttpException,
   req: Request,
@@ -36,12 +37,9 @@ export const logErrors = (
   next(error);
 };
 
-export const errorHandler = (
-  error: HttpException,
-  req: Request,
-  res: Response,
-): Response | void => {
-  res.status(500).json({ msg: error.message, type: "internal server error" });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const errorHandler = (error: HttpException,req: Request,res: Response, next: NextFunction): Response | void => {
+  res.status(500).json({ msg: error.message, type: "middleware error" });
 };
 
 export const boomErrorHandler = (

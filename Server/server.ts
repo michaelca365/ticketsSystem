@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import auth from "../routes/route.auth";
 import users from "../routes/route.users";
+import tickets from "../routes/route.tickets";
 import { sequelize } from "../database/config";
 import { setupModels } from "../database/model";
 
@@ -22,11 +23,12 @@ export class Server {
     this.app = express();
     this.paths = {
       auth: "/api/v1/auth",
-      users: "/api/v1/users"
+      users: "/api/v1/users",
+      tickets: "/api/v1/tickets"
     };
     this.middlewares();
-    this.conectarDB();
     this.routes();
+    this.conectarDB();
     this.error();
   }
 
@@ -40,6 +42,7 @@ export class Server {
   routes(): void {
     this.app.use(this.paths.auth, auth);
     this.app.use(this.paths.users, users);
+    this.app.use(this.paths.tickets, tickets);
   }
 
   async conectarDB(): Promise<void> {
